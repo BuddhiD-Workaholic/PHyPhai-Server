@@ -1,5 +1,4 @@
 import os
-import re
 import subprocess as sp
 import sys
 import webbrowser
@@ -53,7 +52,7 @@ class Ui_MainWindow(object):
             if result == 0:
                 PORT=PORT
                 ptextth=self.plainTextEdit.toPlainText()
-                ptextth=ptextth+"\n"+"Error: Port is in use! \t"+ CDateT.strftime("%m/%d/%Y, %H:%M:%S")
+                ptextth="\n"+"Error: Port is in use! \t"+ CDateT.strftime("%m/%d/%Y, %H:%M:%S")+ptextth
                 self.plainTextEdit.setPlainText(ptextth)
                 
                 msgBox = QMessageBox()
@@ -62,6 +61,7 @@ class Ui_MainWindow(object):
                 msgBox.setWindowTitle("Error!")
                 msgBox.setStandardButtons(QMessageBox.Ok)
                 returnValue = msgBox.exec()
+                
             else:
                 PORT=self.lineEdit_2.toPlainText()
                 
@@ -73,7 +73,7 @@ class Ui_MainWindow(object):
                 f.close()
                 
                 ptextth=self.plainTextEdit.toPlainText()
-                ptextth=ptextth+"\n"+"Path and Port changed! \t"+ CDateT.strftime("%m/%d/%Y, %H:%M:%S")
+                ptextth="\n"+"Path and Port changed! \t"+ CDateT.strftime("%m/%d/%Y, %H:%M:%S")+ptextth
                 self.plainTextEdit.setPlainText(ptextth)
                 
                 msgBox = QMessageBox()
@@ -98,26 +98,28 @@ class Ui_MainWindow(object):
         self.lineEdit_2.setReadOnly(True)
         
         try:
-            sp.check_call(['php', '-v'])
+            X=sp.check_call(['php', '-v'])
         except:
             msgBox = QMessageBox()
             msgBox.setIcon(QMessageBox.Critical)
-            msgBox.setText("PHP is not installed in your PC, You need to install it!")
+            msgBox.setText("We are having troubles finding PHP in this device! \n Do you wish to install PHP?")
             msgBox.setWindowTitle("Error!")
             msgBox.setStandardButtons(QMessageBox.Ok)
             returnValue = msgBox.exec()
-            sys.exit()    
+            if returnValue == QMessageBox.Ok:
+                import PHPInstaller
+                PHPInstaller.install_PHP()   
         
         try:
             threading.Thread(target=MyThread1, args=[]).start()
             
             ptextth=self.plainTextEdit.toPlainText()
-            ptextth=ptextth+"\n"+"Server started on http://localhost:"+ PORT +"      "+ CDateT.strftime("%m/%d/%Y, %H:%M:%S")
+            ptextth="\n"+"Server started on http://localhost:"+ PORT +"      "+ CDateT.strftime("%m/%d/%Y, %H:%M:%S")+"\n"+ptextth
             self.plainTextEdit.setPlainText(ptextth)
                 
         except:
             ptextth=self.plainTextEdit.toPlainText()
-            ptextth=ptextth+"\n"+"Error: Server can't be Started on http://localhost:"+ PORT +"\t"+ CDateT.strftime("%m/%d/%Y, %H:%M:%S")
+            ptextth="\n"+"Error: Server can't be Started on http://localhost:"+ PORT +"\t"+ CDateT.strftime("%m/%d/%Y, %H:%M:%S")+ptextth
             self.plainTextEdit.setPlainText(ptextth)
             
             msgBox = QMessageBox()
@@ -148,12 +150,12 @@ class Ui_MainWindow(object):
                 os.system(KillP)
             
             ptextth=self.plainTextEdit.toPlainText()
-            ptextth=ptextth+"\n"+"Server Stoped \t"+ CDateT.strftime("%m/%d/%Y, %H:%M:%S")+"\n"
+            ptextth="\n"+"Server Stoped \t"+ CDateT.strftime("%m/%d/%Y, %H:%M:%S")+ptextth
             self.plainTextEdit.setPlainText(ptextth)
 
         except :
             ptextth=self.plainTextEdit.toPlainText()
-            ptextth=ptextth+"\n"+"Error: Server can't be Stoped \t"+ CDateT.strftime("%m/%d/%Y, %H:%M:%S")
+            ptextth="\n"+"Error: Server can't be Stoped \t"+ CDateT.strftime("%m/%d/%Y, %H:%M:%S")+ptextth
             self.plainTextEdit.setPlainText(ptextth)
             
             msgBox = QMessageBox()
