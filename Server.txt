@@ -1,3 +1,2 @@
-/home/kalilinux/Downloads/DataBase/HTMLSite
-
-8020
+F:\Other\PHyPhai-Server
+80

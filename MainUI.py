@@ -1,5 +1,6 @@
 import os
 import subprocess as sp
+from os import environ
 import sys
 import webbrowser
 import socket
@@ -11,7 +12,6 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QWidget, QMessageBox,QFileDialog
 
 #When Installing
-#Install PIP
 #pip install --upgrade pyqt5
 #pip install --upgrade psutil
 
@@ -36,7 +36,7 @@ class Ui_MainWindow(object):
         global path
         global PORT
         
-        if self.lineEdit.toPlainText() is not None:
+        if self.lineEdit.toPlainText() !="":
             path=self.lineEdit.toPlainText()
         else: 
             msgBox = QMessageBox()
@@ -46,7 +46,7 @@ class Ui_MainWindow(object):
             msgBox.setStandardButtons(QMessageBox.Ok)
             returnValue = msgBox.exec() 
                   
-        if self.lineEdit_2.toPlainText() is not None and self.lineEdit_2.toPlainText().strip().isdigit() and int(self.lineEdit_2.toPlainText()) >= 80 and int(self.lineEdit_2.toPlainText()) <= 65535:           
+        if self.lineEdit_2.toPlainText() != "" and self.lineEdit_2.toPlainText().strip().isdigit() and int(self.lineEdit_2.toPlainText()) >= 80 and int(self.lineEdit_2.toPlainText()) <= 65535:           
             sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             result = sock.connect_ex(('127.0.0.1',int(PORT)))
             if result == 0:
@@ -104,11 +104,15 @@ class Ui_MainWindow(object):
             msgBox.setIcon(QMessageBox.Critical)
             msgBox.setText("We are having troubles finding PHP in this device! \n Do you wish to install PHP?")
             msgBox.setWindowTitle("Error!")
-            msgBox.setStandardButtons(QMessageBox.Ok)
+            msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
             returnValue = msgBox.exec()
             if returnValue == QMessageBox.Ok:
-                import PHPInstaller
-                PHPInstaller.install_PHP()   
+                CWD= os.getcwd()
+                TempPath=os.path.join(CWD, 'PHPInstaller.exe') 
+                os.startfile(TempPath)
+                return;
+            if returnValue == QMessageBox.Cancel:
+                sys.exit()          
         
         try:
             threading.Thread(target=MyThread1, args=[]).start()
@@ -247,6 +251,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
+        MainWindow.setWindowIcon(QtGui.QIcon('Image.ico'))
         MainWindow.setWindowTitle(_translate("MainWindow", "PHyPhai Server V1.0"))
         self.pushButton.setText(_translate("MainWindow", "Change"))
         self.pushButton_2.setText(_translate("MainWindow", "Exit"))
@@ -259,19 +264,29 @@ class Ui_MainWindow(object):
         self.label_3.setText(_translate("MainWindow", "localhost:"))
         self.plainTextEdit.setReadOnly(True)
         
-        #Read
         global path
         global PORT
-        
-        f = open("Server.txt", "r")
-        path=f.readline()
-        X=f.readline()
-        PORT=f.readline()
-        f.close()
-        
+        CWD= os.getcwd()      
+        if not os.path.exists("./Server.txt"):
+            path=CWD
+            PORT="80"
+            f = open("Server.txt", "w")
+            f.write("null")
+            f.close()
+        else:                       
+            f = open("Server.txt", "r")
+            path=f.readline()
+            if path == "":
+                path=CWD
+            X=f.readline()
+            PORT=f.readline()
+            if PORT=="":
+                PORT="80"
+            f.close()
+            
         self.lineEdit.setPlainText(path)
-        self.lineEdit_2.setPlainText(PORT)
-        ptextth="Server lanuched  \t"+ CDateT.strftime("%m/%d/%Y, %H:%M:%S")
+        self.lineEdit_2.setPlainText(PORT)                
+        ptextth="\n Server lanuched  \t"+ CDateT.strftime("%m/%d/%Y, %H:%M:%S")
         self.plainTextEdit.setPlainText(ptextth)
 
 def helpbutt():
@@ -308,9 +323,16 @@ def MyThread1():
         url='http://localhost:'+PORT    
         webbrowser.open(url, new=1)
         os.system(cmd)
+ 
+def suppress_qt_warnings():
+    environ["QT_DEVICE_PIXEL_RATIO"] = "0"
+    environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
+    environ["QT_SCREEN_SCALE_FACTORS"] = "1"
+    environ["QT_SCALE_FACTOR"] = "1" 
      
 if __name__ == "__main__":
     import sys
+    suppress_qt_warnings()
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
