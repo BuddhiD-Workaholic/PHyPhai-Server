@@ -38,7 +38,13 @@ def install_PHP():
                     try:
                         print("Downloading PHP...")   
                         fullfilename = os.path.join('C:\PHP', 'PHP 8.1.0.zip')
-                        urllib.request.urlretrieve("https://windows.php.net/downloads/releases/php-8.1.0-Win32-vs16-x64.zip", fullfilename)
+                        if platform.architecture()[0] == "32bit":
+                            urllib.request.urlretrieve("https://windows.php.net/downloads/releases/php-8.1.0-Win32-vs16-x86.zip", fullfilename)
+                        elif platform.architecture()[0] == "64bit":
+                            urllib.request.urlretrieve("https://windows.php.net/downloads/releases/php-8.1.0-Win32-vs16-x64.zip", fullfilename)
+                        else: 
+                            print("There's been an error, Download PHP manually!")
+                            sys.exit()
                         #File extraction 
                         zf = ZipFile('C:\PHP\PHP 8.1.0.zip', 'r')
                         zf.extractall('C:\PHP')
