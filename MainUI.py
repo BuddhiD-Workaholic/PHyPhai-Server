@@ -290,7 +290,7 @@ class Ui_MainWindow(object):
         self.plainTextEdit.setPlainText(ptextth)
 
 def helpbutt():
-    pass
+    webbrowser.open("https://bit.ly/PHyPhai-Server", new=1)
 
 def cancelbutt():
     msgBox = QMessageBox()
