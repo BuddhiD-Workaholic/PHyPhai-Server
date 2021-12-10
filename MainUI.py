@@ -11,12 +11,7 @@ from sys import platform
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QWidget, QMessageBox,QFileDialog
 
-#When Installing
-#pip install --upgrade pyqt5
-#pip install --upgrade psutil
-
 #Global VariableDefine
-
 #FilePath
 path='./HTMLSite'
 #PortNo

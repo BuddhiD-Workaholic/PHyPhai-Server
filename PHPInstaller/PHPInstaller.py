@@ -4,6 +4,8 @@ import subprocess as sp
 import ctypes, sys
 import time
 import ssl
+
+
 from sys import platform
 from zipfile import ZipFile
 
@@ -13,6 +15,11 @@ def is_admin():
         return ctypes.windll.shell32.IsUserAnAdmin()
     except:
         return False
+
+def is_windows_64bit():
+    if 'PROCESSOR_ARCHITEW6432' in os.environ:
+        return True
+    return os.environ['PROCESSOR_ARCHITECTURE'].endswith('64')
     
 def install_PHP():
     try:
@@ -38,13 +45,14 @@ def install_PHP():
                     try:
                         print("Downloading PHP...")   
                         fullfilename = os.path.join('C:\PHP', 'PHP 8.1.0.zip')
-                        if platform.architecture()[0] == "32bit":
+                        if is_windows_64bit() == False:
                             urllib.request.urlretrieve("https://windows.php.net/downloads/releases/php-8.1.0-Win32-vs16-x86.zip", fullfilename)
-                        elif platform.architecture()[0] == "64bit":
+                        elif is_windows_64bit() == True:
                             urllib.request.urlretrieve("https://windows.php.net/downloads/releases/php-8.1.0-Win32-vs16-x64.zip", fullfilename)
                         else: 
                             print("There's been an error, Download PHP manually!")
                             sys.exit()
+                            
                         #File extraction 
                         zf = ZipFile('C:\PHP\PHP 8.1.0.zip', 'r')
                         zf.extractall('C:\PHP')
@@ -53,11 +61,15 @@ def install_PHP():
                     except:
                         print(sys.exc_info()[0])
                         print("There's been an error!, The Web resource folder is corrupted or wrong WEB resource URL is added! \n")
-                                                 
-                    #System Path change
-                    os.system('setx /M path "%path%;C:\PHP"')
-                    print("PHP is installed!")
-                    time.sleep(20)            
+                        sys.exit()
+                    try:                             
+                        #System Path change
+                        os.system('setx /M path "%path%;C:\PHP"')
+                        print("PHP is installed!")
+                        time.sleep(20)
+                    except:
+                        print("\n There's been an error!, The Systm is ignoring the downloded path! \n Please set the * C:\PHP * path manually! \n")
+                        sys.exit()           
                 else:
                     ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)   
 
