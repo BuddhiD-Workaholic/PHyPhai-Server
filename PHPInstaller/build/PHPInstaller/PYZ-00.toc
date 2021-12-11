@@ -91,6 +91,10 @@
    'c:\\program files (x86)\\microsoft visual '
    'studio\\shared\\python37_64\\lib\\contextlib.py',
    'PYMODULE'),
+  ('typing',
+   'c:\\program files (x86)\\microsoft visual '
+   'studio\\shared\\python37_64\\lib\\typing.py',
+   'PYMODULE'),
   ('tracemalloc',
    'c:\\program files (x86)\\microsoft visual '
    'studio\\shared\\python37_64\\lib\\tracemalloc.py',
@@ -471,17 +475,13 @@
    'c:\\program files (x86)\\microsoft visual '
    'studio\\shared\\python37_64\\lib\\fnmatch.py',
    'PYMODULE'),
-  ('stringprep',
-   'c:\\program files (x86)\\microsoft visual '
-   'studio\\shared\\python37_64\\lib\\stringprep.py',
-   'PYMODULE'),
   ('_py_abc',
    'c:\\program files (x86)\\microsoft visual '
    'studio\\shared\\python37_64\\lib\\_py_abc.py',
    'PYMODULE'),
-  ('typing',
+  ('stringprep',
    'c:\\program files (x86)\\microsoft visual '
-   'studio\\shared\\python37_64\\lib\\typing.py',
+   'studio\\shared\\python37_64\\lib\\stringprep.py',
    'PYMODULE'),
   ('zipfile',
    'c:\\program files (x86)\\microsoft visual '

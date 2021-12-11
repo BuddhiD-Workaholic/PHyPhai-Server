@@ -102,9 +102,16 @@ class Ui_MainWindow(object):
             msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
             returnValue = msgBox.exec()
             if returnValue == QMessageBox.Ok:
-                CWD= os.getcwd()
-                TempPath=os.path.join(CWD, 'PHPInstaller.exe') 
-                os.startfile(TempPath)
+                if platform == "linux" or platform == "linux2":
+                    cmd = 'sudo chmod 755 ./PHPInstaller'
+                    os.popen(cmd).read()
+                elif platform == "darwin":
+                    cmd = 'sudo chmod 755 ./PHPInstaller'
+                    os.popen(cmd).read()
+                elif platform == "win32":
+                    CWD= os.getcwd()
+                    TempPath=os.path.join(CWD, 'PHPInstaller.exe') 
+                    os.startfile(TempPath)
                 return;
             if returnValue == QMessageBox.Cancel:
                 sys.exit()          
@@ -273,7 +280,6 @@ class Ui_MainWindow(object):
             path=f.readline()
             if path == "":
                 path=CWD
-            X=f.readline()
             PORT=f.readline()
             if PORT=="":
                 PORT="80"
