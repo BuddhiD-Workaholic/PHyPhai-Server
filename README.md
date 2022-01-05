@@ -13,7 +13,7 @@ PHyPhai-Server is a cross-platform compatible PHP development server design to h
 ##### ⦿ The PHyPhai-Server also gives different ways of debugging the different server errors including fast cash-free refresh and comprehensive server status information.
 
 
-## Installation
+## Installation -- Download the entire Folder/ Directory
    #### ◘ Windows ➼             Installable [exe](https://github.com/BuddhiD-Workaholic/PHyPhai-Server/tree/main/Installable/Windows)
    #### ◘ MAC OS and Linux ➼    Installable [binary](https://github.com/BuddhiD-Workaholic/PHyPhai-Server/tree/main/Installable/Linux%20and%20Mac)
 
