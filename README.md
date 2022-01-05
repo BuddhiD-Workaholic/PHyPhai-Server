@@ -12,12 +12,11 @@ The PHyPhai-Server also gives different ways of debugging the different server e
 
 
 ## Installation
-   Windows: Installable [exe](https://github.com/BuddhiD-Workaholic/PHyPhai-Server/tree/main/Installable/Windows)
-
-   MAC OS and Linux: Installable [binary](https://github.com/BuddhiD-Workaholic/PHyPhai-Server/tree/main/Installable/Linux%20and%20Mac)
+   #### Windows: Installable [exe](https://github.com/BuddhiD-Workaholic/PHyPhai-Server/tree/main/Installable/Windows)
+   #### MAC OS and Linux: Installable [binary](https://github.com/BuddhiD-Workaholic/PHyPhai-Server/tree/main/Installable/Linux%20and%20Mac)
 
 
 ## Supported OS versions:- 
-                            Windows 7+ 
-                            MAC OS X+
-                            Linux All versions
+      Windows 7+ 
+      MAC OS X+
+      Linux all versions
