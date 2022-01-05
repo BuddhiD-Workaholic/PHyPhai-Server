@@ -11,9 +11,9 @@ The PHyPhai-Server also lets developers define their working environment (Direct
 The PHyPhai-Server also gives different ways of debugging the different server errors including fast cash-free refresh and comprehensive server status information.
 
 ## Installation
-  Windows:
+    Windows: 
 
-  MAC OS and Linux:  
+    MAC OS and Linux:  
 
 #### Supported OS versions:- 
                             Windows 7+ 
