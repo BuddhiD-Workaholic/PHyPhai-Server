@@ -1,6 +1,7 @@
 # PHyPhai-Server
 <div align="center">
 [![Logo.png](https://i.postimg.cc/kgnjGgV1/Logo.png)](https://postimg.cc/ykbhrByc)
+   <img src="https://i.postimg.cc/kgnjGgV1/Logo.png)](https://postimg.cc/ykbhrByc"/>
 </div>
 
 ## What is PHyPhai-Server ? 
