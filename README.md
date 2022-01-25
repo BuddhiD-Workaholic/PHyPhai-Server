@@ -21,4 +21,4 @@ PHyPhai-Server is a cross-platform compatible PHP development server design to h
 ## Supported OS versions:- 
       Windows 7+ 
       MAC OS X+
-      Linux all versions
+      Linux all versions with GUI
