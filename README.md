@@ -1,7 +1,7 @@
 # PHyPhai-Server
-
+<div align="center">
 [![Logo.png](https://i.postimg.cc/kgnjGgV1/Logo.png)](https://postimg.cc/ykbhrByc)
-
+</div>
 
 ## What is PHyPhai-Server ? 
 PHyPhai-Server is a cross-platform compatible PHP development server design to help PHP developers with the latest and greatest features.
